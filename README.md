@@ -1,2 +1,2 @@
 # RiganVTU
-A portfolio websites for Rigan Tech
+A virtual top-up web platform
