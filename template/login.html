@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiganVTU - Login</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/css/fontawesome.css" />
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../static/css/rigan.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/themes/w-theme-navy-blue.css" />
+    <script src="../static/js/jquery-3.6.1.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <!-- script library used for customized alert box -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <style>
+        .content{
+        width: 100%;
+        max-width: 500px;
+        padding: 20px;
+        background: #fff;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: none;
+        margin: auto;
+      }
+      .content h3 {
+          padding-top: 5px;
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 33px;
+        text-align: center;
+      }
+      
+
+      .content .form .field{
+        width: 100%;
+        height: 50px;
+        margin: 20px 0;
+        display: flex;
+        position: relative;
+      }
+      p.error {
+        color: red;
+        line-height: 5px;
+        margin: 3px;
+        font-weight: 500;
+        font-size: 13px;
+      }
+      .form .field input{
+        width: 100%;
+        height: 100%;
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        padding-left: 15px;
+        font-size: 18px;
+        outline: none;
+      }
+      .form .field .icons{
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .field .icons span{
+        height: 25px;
+        width: 25px;
+        border: 2px solid;
+        border-radius: 50%;
+        line-height: 25px;
+      }
+      .field .icons span.icon1{
+        color: #e74c3c;
+        border-color: #e74c3c;
+      }
+      .field .icons span.icon2{
+        color: rgb(13, 13, 61);
+        border-color: rgb(15, 15, 61);
+      }
+      .form button{
+        margin: 20px 0;
+        width: 100%;
+        height: 45px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+          .sign-txt {
+              text-align: center;
+              padding:5px;
+              color: #000;
+              font-size: 18px;
+          }
+          .sign-txt a {
+              color: red;
+              font-size: 18px;
+          }
+    
+    </style>
+</head>
+
+<body>
+    <!-- Side Navigation -->
+    <div class="nav w-hide w-overlay">
+        <nav class="w-animate-left w-white">
+            <div class="openav w-spin" id="closenav">
+                <i class="fa fa-times"></i>
+            </div>
+            <ul>
+                <li><a href="../index.html" class="w-hover-theme"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#pricing" class="w-hover-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
+                <li><a href="#" class="w-hover-theme"><i class="fa fa-phone"></i> Contact</a></li>
+                <li><a href="#" class="w-hover-theme"><i class="fa fa-question"></i> FAQ</a></li>
+                <li><a href="login.html" class="w-hover-theme active"><i class="fa fa-lock"></i> Login</a></li>
+                <li><a href="register.html" class="w-hover-theme"><i class="fa fa-user-plus"></i> SignUp</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Header section -->
+    <header class="w-theme-d3 w-sticky-top w-flex w-flex-wrap w-align-center w-padding-8 w-flex-between col-sm-12 col-md-12 col-l-12">
+        <div>
+        <span class="h4 w-bold-xx w-wide">RiganVTU</span><br>
+        <span class="w-tiny"><i>Fast, Secure & Reliable...</i></span>
+        </div>
+        <div id="openav" class="openav w-round-large w-hover-border-theme"><i class="fa fa-navicon"></i></div>
+        <ul class="w-navbar">
+            <li><a href="../index.html" class="w-hover-text-theme"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="../index.html#pricing" class="w-hover-text-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
+            <li><a href="#" class="w-hover-text-theme"><i class="fa fa-phone"></i> Contact</a></li>
+            <li><a href="#" class="w-hover-text-theme"><i class="fa fa-question"></i> FAQ</a></li>
+            <!--
+            <li class="w-dropdown-hover">
+                <a href="#">Services</a>
+                <div class="w-dropdown-content">
+                    <a href="#">HTML</a>
+                </div>
+            </li>
+        -->
+            <li><a href="login.html" class="w-hover-text-theme active"><i class="fa fa-lock"></i> Login</a></li>
+            <li><a href="register.html" class="w-hover-text-theme"><i class="fa fa-user-plus"></i> SignUp</a></li>
+        </ul>
+
+    </header>
+
+    <!-- Modal body -->
+    <form class="content w-card-16" action="#">
+        <h3>Login Form</h3>
+        <div class="form">
+            <div class="field">
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+                <div class="icons"></div>
+            </div>
+            <p class="error user-error" id=""></p>
+            <div class="field">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                <div class="icons"></div>
+            </div>
+            <p class="error pass-error" id=""></p>
+            <button class="w-theme-action" type="submit">Login</button>
+            <p class="sign-txt">Not A Registered User? <a href="register.html">Create Account</a></p>
+        </div>
+    </form>
+    <script src="../static/js/validation.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script>
+        $('.content').submit(function(e) {
+            e.preventDefault();
+            if($('#username').val() != '' && $('#password').val() != '') {
+                location.href = "dashboard.html";
+            }
+        })
+    </script>
+</body>
+</html>

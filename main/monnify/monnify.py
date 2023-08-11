@@ -75,6 +75,21 @@ class Monnify:
         details = json.loads(getTrans.content)
         return details
         
-        # Initiate a transaction
-        def initiateTransaction(self):
-            pass
+    # Initiate a transaction
+    def initializeTransaction(self):
+        rHeaders = {'Content-Type': "application/json", 'Authorization': "Bearer {0}".format(self.generateToken())}
+        initTransUrl = "https://api.monnify.com/api/v2/bank-transfer/reserved-accounts"
+
+        data = {
+            "accountReference": '',
+            "accountName": '',
+            "currencyCode": '',
+            "contractCode": '',
+            "customerEmail": '',
+            "customerName": '',
+            "getAllAvailableBanks": ''
+        }
+        initTransaction = requests.post(initTransUrl, data=json.dumps(data), headers=rHeaders)
+        transactionInfo = json.loads(initTransaction.content)
+        # print("==>", reserverR)
+        return transactionInfo

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="static/css/fontawesome.css" />
     <link rel="stylesheet" href="static/css/owl.carousel.min.css" />
     <link rel="stylesheet" href="static/css/rigan.css" />
-    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/css/home.css" />
     <link rel="stylesheet" href="static/css/themes/w-theme-navy-blue.css" />
     <script src="static/js/jquery-3.6.1.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
@@ -24,7 +24,7 @@
             <div class="modal-dialog modal-md modal-dialog-centered">
                 <form class="modal-content needs-validation" action="#" method="POST" id="contact-form">
                     
-                    <!-- Modal Header -->
+                    <!-- Modal Header --> 
                     <div class="modal-header">
                     <h4 class="modal-title w-bold-xx w-xlarge">Send Us A Message</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -57,95 +57,7 @@
             </div>
         </div>
 
-    <!-- Login Form -->
-        <!-- The Modal -->
-        <div class="modal fade" id="loginModal">
-            <div class="modal-dialog modal-md modal-dialog-centered">
-                <form class="modal-content needs-validation" action="#" method="POST" id="login-form">
-                    
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title w-bold-xx w-xlarge">Login Form</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body content">
-                            <div class="form">
-                                <div class="field">
-                                    <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error user-error" id=""></p>
-                                <div class="field">
-                                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error pass-error" id=""></p>
-                                <button class="w-theme-action" type="submit">Login</button>
-                                <p class="sign-txt">Not A Registered User? <a href="#" data-toggle="modal" data-target="#signupModal">Create Account</a></p>
-                            </div>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
 
-        <!-- SignUp Form -->
-        <!-- The Modal -->
-        <div class="modal fade" id="signupModal">
-            <div class="modal-dialog modal-md modal-dialog-centered">
-                <form class="modal-content needs-validation" action="#" method="POST" id="signup-form">
-                    
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title w-bold-xx w-xlarge">SignUp Form</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body content">
-                        <div class="form">
-                            <div class="field">
-                                <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error email-error" id=""></p>
-                            <div class="field">
-                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number" name="phone" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error tel-error" id=""></p>
-                            <div class="field">
-                                <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error user-error" id=""></p>
-
-                            <div class="field">
-                                <input type="password" oninput="trigger()" class="form-control" id="new_password" placeholder="Password" name="password" required>
-                                <div class="icons"></div>
-                            </div>
-                            <div class="indicator">
-                                <span class="weak"></span>
-                                <span class="medium"></span>
-                                <span class="strong"></span>
-                            </div>
-                            <p class="text" id=""></p>
-
-                            <div class="field">
-                                <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="password" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error cpass-error" id=""></p>
-
-                            <button class="w-theme-action" type="submit" id="signup-btn">Create Account</button>
-                        </div>
-                    </div>
-            
-                </form>
-            </div>
-        </div>
 
     <!-- Side Navigation -->
     <div class="nav w-hide w-overlay">
@@ -154,12 +66,12 @@
                 <i class="fa fa-times"></i>
             </div>
             <ul>
-                <li><a href="template/dashboard.html" class="w-hover-theme active"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="index.html" class="w-hover-theme active"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="#pricing" class="w-hover-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
                 <li><a href="#" class="w-hover-theme" data-toggle="modal" data-target="#contactModal"><i class="fa fa-phone"></i> Contact</a></li>
                 <li><a href="#" class="w-hover-theme"><i class="fa fa-question"></i> FAQ</a></li>
-                <li><a href="#" class="w-hover-theme" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"></i> Login</a></li>
-                <li><a href="#" class="w-hover-theme" data-toggle="modal" data-target="#signupModal"><i class="fa fa-user-plus"></i> SignUp</a></li>
+                <li><a href="template/login.html" class="w-hover-theme"><i class="fa fa-lock"></i> Login</a></li>
+                <li><a href="template/register.html" class="w-hover-theme"><i class="fa fa-user-plus"></i> SignUp</a></li>
             </ul>
         </nav>
     </div>
@@ -172,7 +84,7 @@
         </div>
         <div id="openav" class="openav w-round-large w-hover-border-theme"><i class="fa fa-navicon"></i></div>
         <ul class="w-navbar">
-            <li><a href="template/dashboard.html" class="w-hover-text-theme active"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="index.html" class="w-hover-text-theme active"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#pricing" class="w-hover-text-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
             <li><a href="#" class="w-hover-text-theme" data-toggle="modal" data-target="#contactModal"><i class="fa fa-phone"></i> Contact</a></li>
             <li><a href="#" class="w-hover-text-theme"><i class="fa fa-question"></i> FAQ</a></li>
@@ -184,8 +96,8 @@
                 </div>
             </li>
         -->
-            <li><a href="#" class="w-hover-text-theme" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"></i> Login</a></li>
-            <li><a href="#" class="w-hover-text-theme" data-toggle="modal" data-target="#signupModal"><i class="fa fa-user-plus"></i> SignUp</a></li>
+            <li><a href="template/login.html" class="w-hover-text-theme"><i class="fa fa-lock"></i> Login</a></li>
+            <li><a href="template/register.html" class="w-hover-text-theme"><i class="fa fa-user-plus"></i> SignUp</a></li>
         </ul>
 
     </header>
