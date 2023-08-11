@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RiganVTU - Dashboard</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/css/fontawesome.css" />
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../static/css/rigan.css" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/themes/w-theme-navy-blue.css" />
+    <script src="../static/js/jquery-3.6.1.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <!-- script library used for customized alert box -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <!-- Login Form -->
+        <!-- The Modal -->
+        <div class="modal fade" id="loginModal">
+            <div class="modal-dialog modal-md modal-dialog-centered">
+                <form class="modal-content needs-validation" action="#" method="POST" id="login-form">
+                    
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title w-bold-xx w-xlarge">Login Form</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body content">
+                            <div class="form">
+                                <div class="field">
+                                    <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+                                    <div class="icons"></div>
+                                </div>
+                                <p class="error user-error" id=""></p>
+                                <div class="field">
+                                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
+                                    <div class="icons"></div>
+                                </div>
+                                <p class="error pass-error" id=""></p>
+                                <button class="w-theme-action" type="submit">Login</button>
+                                <p class="sign-txt">Not A Registered User? <a href="#" data-toggle="modal" data-target="#signupModal">Create Account</a></p>
+                            </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+
+
+
+    <!-- Side Navigation -->
+    <div class="nav w-hide w-overlay">
+        <nav class="w-animate-left w-white">
+            <div class="openav w-spin" id="closenav">
+                <i class="fa fa-times"></i>
+            </div>
+            <ul>
+                <li><a href="#" class="w-hover-theme active"><i class="fa fa-th"></i> Dashboard</a></li>
+                <li class="dropdown">
+                    <a href="#" class="w-hover-theme dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dollar"></i> Wallet Funding</a>
+                    <ul class="dropdown-menu w-card-16">
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-money"></i> Manual Funding</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-exchange"></i> Bank Transfer</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="w-hover-theme dropdown-toggle" data-toggle="dropdown"><i class="fa fa-refresh"></i> Subscriptions</a>
+                    <ul class="dropdown-menu w-card-16">
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-signal"></i> Airtime</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-wifi"></i> Mobile Data</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-desktop"></i> Cable/TV</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-lightbulb-o"></i> Electricity</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-graduation-cap"></i> WAEC Pin</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="w-hover-theme"><i class="fa fa-list-alt"></i> Transactions</a></li>
+                <li class="dropdown">
+                    <a href="#" class="w-hover-theme dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i> Settings</a>
+                    <ul class="dropdown-menu w-card-16">
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-key"></i> Change Password</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-bank"></i> Payment PIN</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="w-hover-theme"><i class="fa fa-power-off"></i> Logout</a></li>
+                
+            </ul>
+            
+        </nav>
+    </div>
+
+    <!-- Header section -->
+    <header class="w-theme-d3 w-sticky-top w-flex w-flex-wrap w-align-center w-padding-8 w-flex-between col-sm-12 col-md-12 col-l-12">
+        <div>
+        <span class="h4 w-bold-xx w-wide">RiganVTU</span><br>
+        <span class="w-tiny"><i>Fast, Secure & Reliable...</i></span>
+        </div>
+        <div id="openav" class="openav w-round-large w-hover-border-theme"><i class="fa fa-navicon"></i></div>
+        <ul class="w-navbar">
+            <li><a href="#" class="w-hover-text-theme active"><i class="fa fa-th"></i> Dashboard</a></li>
+                <li class="dropdown">
+                    <a href="#" class="w-hover-text-theme dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dollar"></i> Wallet Funding</a>
+                    <ul class="dropdown-menu w-card-16">
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-money"></i> Manual Funding</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-exchange"></i> Bank Transfer</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="w-hover-text-theme dropdown-toggle" data-toggle="dropdown"><i class="fa fa-refresh"></i> Subscriptions</a>
+                    <ul class="dropdown-menu w-card-16">
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-signal"></i> Airtime</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-wifi"></i> Mobile Data</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-desktop"></i> Cable/TV</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-lightbulb-o"></i> Electricity</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-graduation-cap"></i> WAEC Pin</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="w-hover-text-theme"><i class="fa fa-list-alt"></i> Transactions</a></li>
+                <li class="dropdown">
+                    <a href="#" class="w-hover-text-theme dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gears"></i> Settings</a>
+                    <ul class="dropdown-menu w-card-16">
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-key"></i> Change Password</a></li>
+                        <li><a class="dropdown-item w-hover-theme w-padding" href="#"><i class="fa fa-bank"></i> Payment PIN</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="w-hover-text-theme"><i class="fa fa-power-off"></i> Logout</a></li>
+                
+        </ul>
+
+    </header>
+
+    <!-- Menu Section -->
+    <div class="menu-section container-fluid w-padding w-white w-section">
+        <h3 class="w-bold-xx w-xlarge w-text-theme w-padding-12">Welcome Neeyah!</h3>
+        <div class="bank-list">
+            <div class="container price-con moniepoint-list">
+                <table class="table w-text-white w-bold-x">
+                    <thead>
+                        <tr class="w-center w-bold-xx w-wide .h2">
+                            <th colspan="2">Moniepoint Account</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Account No</td>
+                            <td>1234567890</td>
+                        </tr>
+                        <tr>
+                            <td>Account Name</td>
+                            <td>RiganVTU-Nee</td>
+                        </tr>
+                        <tr>
+                            <td>Bank</td>
+                            <td>Moniepoint</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container price-con uba-list">
+                <table class="table w-text-white w-bold-x">
+                    <thead>
+                        <tr class="w-center w-bold-xx w-wide .h2">
+                            <th colspan="2">Manual Funding (UBA)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Account No</td>
+                            <td>1234567890</td>
+                        </tr>
+                        <tr>
+                            <td>Account Name</td>
+                            <td>RiganVTU-Nee</td>
+                        </tr>
+                        <tr>
+                            <td>Bank</td>
+                            <td>United Bank of Africa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <!-- services -->
+    <section id="features">
+
+        <h1 class="w-text-theme" id="services">Our Services</h1>
+
+        <div class="fea-base">
+
+            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
+                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-mobile"></i></div>
+                <div>
+                    <h3>Buy Airtime</h3>
+                    <p>Airtel, MTN, GLO, 9Mobile</p>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
+                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-wifi"></i></div>
+                <div>
+                    <h3>Buy Data</h3>
+                    <p>SME, Corporate, Gifting</p>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
+                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-desktop"></i></div>
+                <div>
+                    <h3>Cable TV</h3>
+                    <p>DSTV, GoTV, Startimes</p>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
+                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-lightbulb-o"></i></div>
+                <div>
+                    <h3>Electricity</h3>
+                    <p>IBEDC, EKEDC, etc</p>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
+                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-graduation-cap"></i></div>
+                <div>
+                    <h3>WAEC E-Pins</h3>
+                    <p>SSCE Result Pins</p>
+                </div>
+            </div>
+
+            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
+                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-list-alt"></i></div>
+                <div>
+                    <h3>Wallet Summary</h3>
+                    <p>Wallet Funding & History</p>
+                </div>
+            </div>
+
+            <div class="fea-box w-text-theme w-hover-theme">
+                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-code"></i></div>
+                <div>
+                    <h3>Developer's API</h3>
+                    <p>Get An Affiliate Website</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- features -->
+    <section id="features">
+
+        <h1 class="w-text-theme" id="services">Why Choose Us?</h1>
+
+        <div class="fea-base">
+
+            <div class="fea-box w-text-theme">
+                <div class="fea-icon w-border w-border-theme"><i class="fa fa-flash"></i></div>
+                <div>
+                    <h3>We're Fast</h3>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme">
+                <div class="fea-icon w-border w-border-theme"><i class="fa fa-android"></i></div>
+                <div>
+                    <h3>Automated Services</h3>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme">
+                <div class="fea-icon w-border w-border-theme"><i class="fa fa-dollar"></i></div>
+                <div>
+                    <h3>Best Prices</h3>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme">
+                <div class="fea-icon w-border w-border-theme"><i class="fa fa-lock"></i></div>
+                <div>
+                    <h3>100% Secure</h3>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme">
+                <div class="fea-icon w-border w-border-theme"><i class="fa fa-user-secret"></i></div>
+                <div>
+                    <h3>We're Reliable</h3>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme">
+                <div class="fea-icon w-border w-border-theme"><i class="fa fa-phone"></i></div>
+                <div>
+                    <h3>24/7 Online</h3>
+                </div>
+            </div>
+            <div class="fea-box w-text-theme">
+                <div class="fea-icon w-border w-border-theme"><i class="fa fa-group"></i></div>
+                <div>
+                    <h3>Customer Support</h3>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+    <footer class="w-theme-d5 w-padding-8 w-center">
+        <p>Copyright &copy; 2023 RiganVTU | Developed By Rigan Tech</p>
+        <a href="#" class="w-text-shadow"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;
+        <a href="#" class="w-text-shadow"><i class="fa fa-twitter"></i></a>&nbsp;&nbsp;
+        <a href="#" class="w-text-shadow"><i class="fa fa-whatsapp"></i></a>&nbsp;&nbsp;
+        <a href="#" class="w-text-shadow"><i class="fa fa-linkedin"></i></a>
+    </footer>
+
+    <script src="../static/js/script.js"></script>
+    <script>
+
+    </script>
+    
+</body>
+</html>
