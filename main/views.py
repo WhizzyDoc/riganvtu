@@ -25,7 +25,7 @@ def sterilize(s):
     s = ''.join(letter for letter in s if letter.isalnum())
     return s
 
-@require_POST
+
 def register(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         email = json.load(request)['email ']
@@ -67,7 +67,7 @@ def register(request):
             })
     return render(request, 'account/register.html')
 
-@require_POST
+
 def login_view(request):
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         username = sterilize(json.load(request)['username'])
@@ -92,6 +92,6 @@ def login_view(request):
 def index(request):
     return render(request, "main/index.html")
 
-@login_required(login_url="login")
+#@login_required(login_url="login")
 def dashboard(request):
     return render(request, "main/dashboard.html")

@@ -1,195 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RiganVTU - Home</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../static/css/fontawesome.css" />
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="../static/css/rigan.css" />
-    <link rel="stylesheet" href="../static/css/style.css" />
-    <link rel="stylesheet" href="../static/css/themes/w-theme-navy-blue.css" />
-    <script src="../static/js/jquery-3.6.1.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <!-- script library used for customized alert box -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="../static/js/owl.carousel.min.js"></script>
-</head>
-<body>
-    <!-- Contact Form -->
-        <!-- The Modal -->
-        <div class="modal fade" id="contactModal">
-            <div class="modal-dialog modal-md modal-dialog-centered">
-                <form class="modal-content needs-validation" action="#" method="POST" id="contact-form">
-                    
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title w-bold-xx w-xlarge">Send Us A Message</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body content">
-                            <div class="form">
-                                <div class="field">
-                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error name-error" id=""></p>
-                                <div class="field">
-                                    <input type="email" class="form-control" id="cemail" placeholder="Email" name="cemail" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error email-error" id=""></p>
-                                <div class="field" style="height:100px;">
-                                    <textarea class="form-control" id="message" placeholder="Type your message here..." name="message" style="height:100%;resize:none;" required></textarea>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error message-error" id=""></p>
-                                <button class="w-theme-action" type="submit"><i class="fa fa-send"></i>  Send Message</button>
-                                <a href="https://wa.me/2347011978058/"><button class="btn btn-success"><i class="fa fa-whatsapp"></i> WhatsApp Us</button></a>
-                            </div>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
+{% extends 'account/home-base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load humanize %}
 
-    <!-- Login Form -->
-        <!-- The Modal -->
-        <div class="modal fade" id="loginModal">
-            <div class="modal-dialog modal-md modal-dialog-centered">
-                <form class="modal-content needs-validation" action="#" method="POST" id="login-form">
-                    
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title w-bold-xx w-xlarge">Login Form</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body content">
-                            <div class="form">
-                                <div class="field">
-                                    <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error user-error" id=""></p>
-                                <div class="field">
-                                    <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error pass-error" id=""></p>
-                                <button class="w-theme-action" type="submit">Login</button>
-                                <p class="sign-txt">Not A Registered User? <a href="#" data-toggle="modal" data-target="#signupModal">Create Account</a></p>
-                            </div>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
 
-        <!-- SignUp Form -->
-        <!-- The Modal -->
-        <div class="modal fade" id="signupModal">
-            <div class="modal-dialog modal-md modal-dialog-centered">
-                <form class="modal-content needs-validation" action="#" method="POST" id="signup-form">
-                    
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h4 class="modal-title w-bold-xx w-xlarge">SignUp Form</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body content">
-                        <div class="form">
-                            <div class="field">
-                                <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error email-error" id=""></p>
-                            <div class="field">
-                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number" name="phone" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error tel-error" id=""></p>
-                            <div class="field">
-                                <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error user-error" id=""></p>
-
-                            <div class="field">
-                                <input type="password" oninput="trigger()" class="form-control" id="new_password" placeholder="Password" name="password" required>
-                                <div class="icons"></div>
-                            </div>
-                            <div class="indicator">
-                                <span class="weak"></span>
-                                <span class="medium"></span>
-                                <span class="strong"></span>
-                            </div>
-                            <p class="text" id=""></p>
-
-                            <div class="field">
-                                <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" name="password" required>
-                                <div class="icons"></div>
-                            </div>
-                            <p class="error cpass-error" id=""></p>
-
-                            <button class="w-theme-action" type="submit" id="signup-btn">Create Account</button>
-                        </div>
-                    </div>
-            
-                </form>
-            </div>
-        </div>
-
-    <!-- Side Navigation -->
-    <div class="nav w-hide w-overlay">
-        <nav class="w-animate-left w-white">
-            <div class="openav w-spin" id="closenav">
-                <i class="fa fa-times"></i>
-            </div>
-            <ul>
-                <li><a href="#" class="w-hover-theme active"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#pricing" class="w-hover-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
-                <li><a href="#" class="w-hover-theme" data-toggle="modal" data-target="#contactModal"><i class="fa fa-phone"></i> Contact</a></li>
-                <li><a href="#" class="w-hover-theme"><i class="fa fa-question"></i> FAQ</a></li>
-                <li><a href="#" class="w-hover-theme" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"></i> Login</a></li>
-                <li><a href="#" class="w-hover-theme" data-toggle="modal" data-target="#signupModal"><i class="fa fa-user-plus"></i> SignUp</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- Header section -->
-    <header class="w-theme-d3 w-sticky-top w-flex w-flex-wrap w-align-center w-padding-8 w-flex-between col-sm-12 col-md-12 col-l-12">
-        <div>
-        <span class="h4 w-bold-xx w-wide">RiganVTU</span><br>
-        <span class="w-tiny"><i>Fast, Secure & Reliable...</i></span>
-        </div>
-        <div id="openav" class="openav w-round-large w-hover-border-theme"><i class="fa fa-navicon"></i></div>
-        <ul class="w-navbar">
-            <li><a href="#" class="w-hover-text-theme active"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#pricing" class="w-hover-text-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
-            <li><a href="#" class="w-hover-text-theme" data-toggle="modal" data-target="#contactModal"><i class="fa fa-phone"></i> Contact</a></li>
-            <li><a href="#" class="w-hover-text-theme"><i class="fa fa-question"></i> FAQ</a></li>
-            <!--
-            <li class="w-dropdown-hover">
-                <a href="#">Services</a>
-                <div class="w-dropdown-content">
-                    <a href="#">HTML</a>
-                </div>
-            </li>
-        -->
-            <li><a href="#" class="w-hover-text-theme" data-toggle="modal" data-target="#loginModal"><i class="fa fa-lock"></i> Login</a></li>
-            <li><a href="#" class="w-hover-text-theme" data-toggle="modal" data-target="#signupModal"><i class="fa fa-user-plus"></i> SignUp</a></li>
-        </ul>
-
-    </header>
-
+{% block title %}Home{% endblock title %}
+{% block active1 %}active{% endblock %}
+{% block active11 %}active{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="/static/css/home.css" />
+{% endblock %}
+ 
+    
+{% block content %}
 
     <!-- FrontPage -->
     <section id="home">
@@ -348,7 +171,7 @@
         <h1 class="w-text-theme" id="services">Our Data Pricing</h1>
         <div class="price-list">
             <div class="container price-con airtel-list">
-                <img src="../static/image/Airtel Nigeria Logo.png" alt="" />
+                <img src="/static/image/Airtel Nigeria Logo.png" alt="" />
                 <table class="table w-text-white w-bold-x">
                     <tbody>
                         <tr>
@@ -370,7 +193,7 @@
                 </table>
             </div>
             <div class="container price-con mtn-list">
-                <img src="../static/image/MTN Logo.png" alt="" />
+                <img src="/static/image/MTN Logo.png" alt="" />
                 <table class="table w-text-black w-bold-x">
                     <tbody>
                         <tr>
@@ -392,7 +215,7 @@
                 </table>
             </div>
             <div class="container price-con glo-list">
-                <img src="../static/image/Globacom Limited Logo.svg" alt="" />
+                <img src="/static/image/Globacom Limited Logo.svg" alt="" />
                 <table class="table w-text-white w-bold-x">
                     <tbody>
                         <tr>
@@ -414,7 +237,7 @@
                 </table>
             </div>
             <div class="container price-con etisalat-list">
-                <img src="../static/image/9mobile Logo.png" alt="" />
+                <img src="/static/image/9mobile Logo.png" alt="" />
                 <table class="table w-text-white w-bold-x">
                     <tbody>
                         <tr>
@@ -444,35 +267,35 @@
         <h1 class="w-text-theme">Testimonials</h1>
         <div class="testimonial owl-carousel">
             <div class="test-con">
-                <img src="../static/image/avatar-1.jpg" alt="" />
+                <img src="/static/image/avatar-1.jpg" alt="" />
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
                 <h3>John Philip</h3>
             </div>
             <div class="test-con">
-                <img src="../static/image/avatar-2.jpg" alt="" />
+                <img src="/static/image/avatar-2.jpg" alt="" />
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
                 <h3>John Doe</h3>
             </div>
             <div class="test-con">
-                <img src="../static/image/avatar-3.jpg" alt="" />
+                <img src="/static/image/avatar-3.jpg" alt="" />
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
                 <h3>Jane Maddy</h3>
             </div>
             <div class="test-con">
-                <img src="../static/image/avatar.png" alt="" />
+                <img src="/static/image/avatar.png" alt="" />
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
                 <h3>Hermione</h3>
             </div>
             <div class="test-con">
-                <img src="../static/image/kisspng-nigeria-mtn-group-globacom-etisalat-mobile-phones-etisalat.jpg" alt=""/>
+                <img src="/static/image/kisspng-nigeria-mtn-group-globacom-etisalat-mobile-phones-etisalat.jpg" alt=""/>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
@@ -485,10 +308,10 @@
     <section id="features">
         <h1 class="w-text-theme" id="services">Our Partners</h1>
         <div class="part-con">
-            <img src="../static/image/MTN Logo.png" alt="" />
-            <img src="../static/image/9mobile Logo.png" alt="" />
-            <img src="../static/image/Airtel Nigeria Logo.png" alt="" />
-            <img src="../static/image/Globacom Limited Logo.svg" alt="" />
+            <img src="/static/image/MTN Logo.png" alt="" />
+            <img src="/static/image/9mobile Logo.png" alt="" />
+            <img src="/static/image/Airtel Nigeria Logo.png" alt="" />
+            <img src="/static/image/Globacom Limited Logo.svg" alt="" />
         </div>
     </section>
 
@@ -500,7 +323,6 @@
         <a href="#" class="w-text-shadow"><i class="fa fa-linkedin"></i></a>
     </footer>
 
-    <script src="../static/js/script.js"></script>
     <script>
         $(".testimonial").owlCarousel({
   margin: 20,
@@ -524,6 +346,5 @@
   }
   });
     </script>
-    
-</body>
-</html>
+
+{% endblock %}
