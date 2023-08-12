@@ -22,7 +22,7 @@ class Profile(models.Model):
         return f'{self.firstName} {self.lastName}'
 
 class Coupon(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="coupon_owned")
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="coupon_owned")
     amount = models.DecimalField(verbose_name="amount", null=True, blank=True, decimal_places=2, max_digits=10)
     description = models.CharField(max_length=200, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
@@ -31,10 +31,10 @@ class Coupon(models.Model):
         ordering = ['-date']
 
 class Account(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="account")
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="account")
     balance = models.DecimalField(verbose_name="balance", null=True, blank=True, decimal_places=2, default=0.00, max_digits=10)
     account_name = models.CharField(max_length=200, blank=True, null=True)
-    account_number = models.PositiveIntegerField(verbose_name="Account Number", null=True, blank=True)
+    account_number = models.BigIntegerField(verbose_name="Account Number", null=True, blank=True)
     bank_name = models.CharField(max_length=200, blank=True, null=True)
     coupon_balance = models.DecimalField(verbose_name="coupon balance", null=True, blank=True, decimal_places=2, default=0.00, max_digits=10)
     created = models.DateTimeField(auto_now_add=True)

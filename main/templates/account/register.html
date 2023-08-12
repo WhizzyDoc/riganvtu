@@ -4,7 +4,7 @@
 {% load humanize %}
 
 
-{% block title %}Login{% endblock title %}
+{% block title %}Register{% endblock title %}
 {% block active6 %}active{% endblock %}
 {% block active66 %}active{% endblock %}
 
@@ -163,9 +163,17 @@
 {% block content %}
 
     <!-- Modal body -->
-    <form class="content w-card-16" action="#">
+    <form class="content w-card-16" action="#" id="register-form">
         <h3>SignUp Form</h3>
         <div class="form">
+          <div class="field">
+            <input type="text" class="form-control" id="first_name" placeholder="First Name" name="first_name" required>
+            <div class="icons"></div>
+          </div>
+          <div class="field">
+            <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name" required>
+            <div class="icons"></div>
+          </div>
             <div class="field">
                 <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required>
                 <div class="icons"></div>
@@ -198,10 +206,77 @@
                 <div class="icons"></div>
             </div>
             <p class="error cpass-error" id=""></p>
+            <div class="field">
+              <input type="number" maxlength="6" class="form-control" id="code" placeholder="Referral Code (Optional)" name="code">
+              <div class="icons"></div>
+          </div>
 
             <button class="w-theme-action" type="submit" id="signup-btn">Create Account</button>
             <p class="sign-txt">Already have an account? <a href="/login/">Login</a></p>
         </div>
     </form>
     <script src="/static/js/validation.js"></script>
+    <script>
+      // submit registraton form
+
+      $('#register-form').submit(function(e) {
+    e.preventDefault();
+    var register_url = "/register/";
+        const formData = new FormData();
+        formData.append('first_name', $('#first_name').val());
+        formData.append('last_name', $('#last_name').val());
+        formData.append('email', $('#email').val());
+        formData.append('phone_number', $('#phone').val());
+        formData.append('username', $('#username').val());
+        formData.append('password', $('#new_password').val());
+        formData.append('code', $('#code').val());
+        
+        $('#signup-btn').text('Submitting').attr('disabled', true);
+
+        fetch(register_url, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest', // necessary to work with .is_ajax verification
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+            body: formData,
+        })
+        .then(response => {
+            return response.json() // convert response to json
+        })
+        .then(data => {
+                // perform action with response data
+                var msg = data['status'];
+                if(msg == 'success') {
+                  var username = data['username'];
+                  var email = data['email'];
+                  var code = '';
+                  if(data['code'] != '') {
+                    code = data['code'];
+                  }
+                  $(function() {
+                    Swal.fire(code + ' Registration Successful! Your username is ' + username);
+                  });
+                  setTimeout(function() {
+                    location.href = '/login/';
+                  }, 4000);
+                }
+                else if(msg == 'error') {
+                  var reason = data['reason']
+                  $(function() {
+                    Swal.fire(reason);
+                });
+                }
+                $('#signup-btn').text('Create Account').attr('disabled', false);
+                
+        })
+        .catch(error => {
+                $(function() {
+                    Swal.fire('Error Occured!');
+                })
+            })
+})  
+    </script>
     {% endblock %}

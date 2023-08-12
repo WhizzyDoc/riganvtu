@@ -107,7 +107,7 @@
 {% block content %}
 
     <!-- Modal body -->
-    <form class="content w-card-16" action="#">
+    <form class="content w-card-16" action="#" id="login-form">
         <h3>Login Form</h3>
         <div class="form">
             <div class="field">
@@ -120,17 +120,54 @@
                 <div class="icons"></div>
             </div>
             <p class="error pass-error" id=""></p>
-            <button class="w-theme-action" type="submit">Login</button>
+            <button class="w-theme-action" type="submit" id="login-btn">Login</button>
             <p class="sign-txt">Not A Registered User? <a href="/register/">Create Account</a></p>
         </div>
     </form>
     <script src="/static/js/validation.js"></script>
     <script>
-        $('.content').submit(function(e) {
-            e.preventDefault();
-            if($('#username').val() != '' && $('#password').val() != '') {
-                location.href = "/dashboard/";
-            }
+        $('#login-form').submit(function(e) {
+    e.preventDefault();
+    var login_url = "/login/";
+        const formData = new FormData();
+        formData.append('username', $('#username').val());
+        formData.append('password', $('#password').val());
+        
+        $('#login-btn').text('Submitting').attr('disabled', true);
+
+        fetch(login_url, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest', // necessary to work with .is_ajax verification
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+            body: formData,
         })
+        .then(response => {
+            return response.json() // convert response to json
+        })
+        .then(data => {
+                // perform action with response data
+                var msg = data['status'];
+                if(msg == 'success') {
+                  location.href = '/dashboard/';
+                }
+                else if(msg == 'error') {
+                  var reason = data['reason']
+                  $(function() {
+                    Swal.fire(reason);
+                });
+                }
+                $('#login-btn').text('Login').attr('disabled', false);
+                
+        })
+        .catch(error => {
+                $(function() {
+                    Swal.fire('Error Occured!');
+                })
+            })
+          })
     </script>
 {% endblock %}

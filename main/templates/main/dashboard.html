@@ -15,8 +15,8 @@
             Wallet Balance <span class="view-balance"><i class="fa fa-eye"></i></span>
         </div>
         <div class="balance">
-            N<span id="acc-bal">5,430.00</span>
-            <p>& Bonus N<span id="bon-bal">200.00</span></p>
+            N<span id="acc-bal">{{ account.balance|intcomma }}</span>
+            <p>& Bonus N<span id="bon-bal">{{ account.coupon_balance|intcomma }}</span></p>
         </div>
         <div class="dash-flex">
             <div>

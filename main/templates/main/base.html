@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="/static/css/themes/w-theme-navy-blue.css" />
         <script src="/static/js/jquery-3.6.1.min.js"></script>
         <script src="/static/js/popper.min.js"></script>
+        <script src="/static/js/js.cookie.min.js"></script>
         <!-- script library used for customized alert box -->
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -67,6 +68,26 @@
     </header>
 
     {% block content %}{% endblock %}
+
+    <script>
+        // function to set csrftoken
+function getCookie(name) {
+   let cookieValue = null;
+   if (document.cookie && document.cookie !== '') {
+       const cookies = document.cookie.split(';');
+       for (let i = 0; i < cookies.length; i++) {
+           const cookie = cookies[i].trim();
+           // does the cookie has the same name as the one we want
+           if (cookie.substring(0, name.length + 1) === (name + '=')) {
+               cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+               break;
+           }
+       }
+   }
+   return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+   </script>
 
     <script src="/static/js/script.js"></script>
     

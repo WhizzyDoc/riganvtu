@@ -34,7 +34,10 @@ $(document).ready(function() {
             $('.cpass-error').html(`<i class="fa fa-warning"></i> Passwords don\'t match.`);
         }
     })
+
+    
 })
+
 
 // registration password
 const indicator = document.querySelector(".indicator");
