@@ -1102,9 +1102,20 @@ input[type=checkbox].w-check:disabled+.w-validate, input[type=radio].w-radio:dis
 .w-flex-around {
     justify-content:space-around;
 }
+.w-flex-center {
+    justify-content:center;
+}
+.w-flex-start {
+    justify-content:flex-start;
+}
+.w-flex-end {
+    justify-content:flex-end;
+}
 .w-flex-between {
     justify-content:space-between;
 }
+.w-align-start {align-items:flex-start;}
+.w-align-end {align-items:flex-end;}
 .w-align-center {align-items:center;}
 
 
@@ -1130,8 +1141,8 @@ input[type=checkbox].w-check:disabled+.w-validate, input[type=radio].w-radio:dis
 .w-margin-0 {margin:0!important}
 .w-margin-top {margin-top:16px!important}
 .w-margin-bottom {margin-bottom:16px!important}
-.w-margin-left {margin-left:16px!important}
-.w-margin-right {margin-right:16px!important}
+.w-margin-left {margin-left:8px!important}
+.w-margin-right {margin-right:8px!important}
 .w-section {
     margin-top:16px!important;
     margin-bottom:16px!important;

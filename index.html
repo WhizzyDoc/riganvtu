@@ -3,439 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RiganVTU - Home</title>
-    <link rel="stylesheet" href="static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="static/css/fontawesome.css" />
-    <link rel="stylesheet" href="static/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="static/css/rigan.css" />
-    <link rel="stylesheet" href="static/css/home.css" />
-    <link rel="stylesheet" href="static/css/themes/w-theme-navy-blue.css" />
-    <script src="static/js/jquery-3.6.1.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <!-- script library used for customized alert box -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="static/js/owl.carousel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/rigan.css">
+    <link rel="stylesheet" type="text/css" href="./static/themes/w-theme-blue.css">
+    <link rel="stylesheet" type="text/css" href="./dist/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/sweetalert.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/login.css">
+    <script src="./static/module/swif.js"></script>
+    <script src="./dist/jquery.min.js"></script>
+    <script src="./static/js/bootstrap.min.js"></script>
+    <script src="./static/js/sweetalert.min.js"></script>
+    <script src="./dist/semantic.min.js"></script> 
+    <title>Rigan VTU - Login</title>
+    <!-- Templates -->
+    <template id="404">
+        <?include: "templates/_parts/404.html"?><?end?>
+    </template>
+
+    <!-- login -->
+  <template id="login">
+    <div class="row">
+        <div class="login-form col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">   
+          <div class="wrapper">
+                      <form class="admin-login-form" action="#">
+                        <h2>Rigan VTU Login</h2>
+                          <div class="input-field">
+                          <input type="text" id="username" required>
+                          <label>Enter Your Username</label>
+                        </div>
+                        <div class="input-field">
+                          <input type="password" id="password" required>
+                          
+                          <label>Enter your password</label>
+                        </div>
+                        <p class="mt-2 w-text-yellow" id="admin_err"></p>
+                        <div class="forget">
+                          <label for="remember">
+                            <input type="checkbox" id="remember">
+                            <p>Remember me</p>
+                          </label>
+                          <a href="#forgot_password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="login-btn">Log In</button>
+                        <div class="register">
+                          <p>Don't have an account? <a href="#register">Create Account</a></p>
+                        </div>
+                      </form>
+          </div>
+            
+        </div>
+    </div>
+    <script>
+        $('.view-pass').click(function() {
+            var input = $(this).siblings('input');
+            if(input.attr('type') == 'password') {
+                input.attr('type', 'text');
+                $(this).children('span').html(`<i class="fa fa-eye-slash"></i>`)
+            }
+            else {
+                input.attr('type', 'password')
+                $(this).children('span').html(`<i class="fa fa-eye"></i>`)
+            }
+        })
+        
+        $('.admin-login-form').submit(function(e) {
+            e.preventDefault();
+            authenticate();
+        })
+  
+    </script>
+  </template>
+
+  <!-- forgot password -->
+  <template id="forgot_password">
+    <div class="row">
+        <div class="login-form col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">   
+          <div class="wrapper">
+                      <form class="forgot-password-form" action="#">
+                        <h2>Forgot Password</h2>
+                          <div class="input-field">
+                          <input type="text" id="forg-email" required>
+                          <label>Enter Your Email</label>
+                        </div>
+                        <button type="submit" class="forgot-btn">Reset Password</button>
+                      </form>
+          </div>
+            
+        </div>
+    </div>
+    <script>
+        
+        $('.forgot-password-form').submit(function(e) {
+            e.preventDefault();
+            forgotPassword();
+        })
+  
+    </script>
+  </template>
+
+  <!-- login -->
+  <template id="register">
+    <div class="row">
+        <div class="login-form col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+              
+                    <form class="register-form">
+                      <h2>Rigan VTU Sign Up</h2>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="f-name" placeholder="First Name" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="l-name" placeholder="Last Name" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group mb-3">
+                          <input type="tel" class="form-control" id="phone" placeholder="Phone Number" required>
+                      </div>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" id="reg-username" placeholder="Username" required>
+                          <p class="mt-2 w-text-red" id="user_err"></p>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="reg-pass" placeholder="Password" required>
+                            <div class="input-group-append view-pass">
+                                <span class="input-group-text w-padding"><i class="fa fa-eye"></i></span>
+                            </div>
+                            <p class="mt-2 w-text-red" id="pass_err"></p>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control" id="cpass" placeholder="Confirm Password" required>
+                            <div class="input-group-append view-pass">
+                                <span class="input-group-text w-padding"><i class="fa fa-eye"></i></span>
+                            </div>
+                            
+                        </div>
+                        <p class="mt-2 w-text-red" id="cpass_err"></p>
+                        <p class="mt-2 w-text-red" id="register_err"></p>
+                        <button type="submit" class="register-btn btn btn-block btn-primary">Create Account</button>
+                        <p class="mt-2">Already A Member? <a href="#">Log In</a></p>
+                    </form>
+
+        </div>
+    </div>
+    <script>
+        $('.view-pass').click(function() {
+            var input = $(this).siblings('input');
+            if(input.attr('type') == 'password') {
+                input.attr('type', 'text')
+                $(this).children('span').html(`<i class="fa fa-eye-slash"></i>`)
+            }
+            else {
+                input.attr('type', 'password')
+                $(this).children('span').html(`<i class="fa fa-eye"></i>`)
+            }
+        });
+        $('.register-form').submit(function(e) {
+            e.preventDefault();
+            register();
+        })
+    </script>
+  </template>
+
+
+    <!-- Routes -->
+<!-- homepage -->
+<template route="/">
+    <?use-template: "login"?>
+  </template>
+  <template route="/register">
+    <?use-template: "register"?>
+  </template>
+  <template route="/forgot_password">
+    <?use-template: "forgot_password"?>
+  </template>
+    <script>
+        var on = XJSX.event.on,
+        emit = XJSX.event.emit;
+        emit("hashchange");
+    </script>
 </head>
 <body>
-    <!-- Contact Form -->
-        <!-- The Modal -->
-        <div class="modal fade" id="contactModal">
-            <div class="modal-dialog modal-md modal-dialog-centered">
-                <form class="modal-content needs-validation" action="#" method="POST" id="contact-form">
-                    
-                    <!-- Modal Header --> 
-                    <div class="modal-header">
-                    <h4 class="modal-title w-bold-xx w-xlarge">Send Us A Message</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body content">
-                            <div class="form">
-                                <div class="field">
-                                    <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error name-error" id=""></p>
-                                <div class="field">
-                                    <input type="email" class="form-control" id="cemail" placeholder="Email" name="cemail" required>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error email-error" id=""></p>
-                                <div class="field" style="height:100px;">
-                                    <textarea class="form-control" id="message" placeholder="Type your message here..." name="message" style="height:100%;resize:none;" required></textarea>
-                                    <div class="icons"></div>
-                                </div>
-                                <p class="error message-error" id=""></p>
-                                <button class="w-theme-action" type="submit"><i class="fa fa-send"></i>  Send Message</button>
-                                <a href="https://wa.me/2347011978058/"><button class="btn btn-success"><i class="fa fa-whatsapp"></i> WhatsApp Us</button></a>
-                            </div>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
-
-
-
-    <!-- Side Navigation -->
-    <div class="nav w-hide w-overlay">
-        <nav class="w-animate-left w-white">
-            <div class="openav w-spin" id="closenav">
-                <i class="fa fa-times"></i>
-            </div>
-            <ul>
-                <li><a href="index.html" class="w-hover-theme active"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#pricing" class="w-hover-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
-                <li><a href="#" class="w-hover-theme" data-toggle="modal" data-target="#contactModal"><i class="fa fa-phone"></i> Contact</a></li>
-                <li><a href="#" class="w-hover-theme"><i class="fa fa-question"></i> FAQ</a></li>
-                <li><a href="template/login.html" class="w-hover-theme"><i class="fa fa-lock"></i> Login</a></li>
-                <li><a href="template/register.html" class="w-hover-theme"><i class="fa fa-user-plus"></i> SignUp</a></li>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- Header section -->
-    <header class="w-theme-d3 w-sticky-top w-flex w-flex-wrap w-align-center w-padding-8 w-flex-between col-sm-12 col-md-12 col-l-12">
-        <div>
-        <span class="h4 w-bold-xx w-wide">RiganVTU</span><br>
-        <span class="w-tiny"><i>Fast, Secure & Reliable...</i></span>
-        </div>
-        <div id="openav" class="openav w-round-large w-hover-border-theme"><i class="fa fa-navicon"></i></div>
-        <ul class="w-navbar">
-            <li><a href="index.html" class="w-hover-text-theme active"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#pricing" class="w-hover-text-theme"><i class="fa fa-dollar"></i> Pricing</a></li>
-            <li><a href="#" class="w-hover-text-theme" data-toggle="modal" data-target="#contactModal"><i class="fa fa-phone"></i> Contact</a></li>
-            <li><a href="#" class="w-hover-text-theme"><i class="fa fa-question"></i> FAQ</a></li>
-            <!--
-            <li class="w-dropdown-hover">
-                <a href="#">Services</a>
-                <div class="w-dropdown-content">
-                    <a href="#">HTML</a>
-                </div>
-            </li>
-        -->
-            <li><a href="template/login.html" class="w-hover-text-theme"><i class="fa fa-lock"></i> Login</a></li>
-            <li><a href="template/register.html" class="w-hover-text-theme"><i class="fa fa-user-plus"></i> SignUp</a></li>
-        </ul>
-
-    </header>
-
-
-    <!-- FrontPage -->
-    <section id="home">
-        <div class="images">
-            <div class="front front-1">
-                <h1 class="w-text-white w-bold-xx w-xxlarge w-left w-animate-left">Welcome To Rigan VTU Platform 1</h1>
-            </div>
-            <div class="front front-2">
-                <h1 class="w-text-white w-bold-xx w-xxlarge w-right w-animate-left">Welcome To Rigan VTU Platform 2</h1>
-            </div>
-            <div class="front front-3">
-                <h1 class="w-text-white w-bold-xx w-xxlarge w-center w-animate-zoom">Welcome To Rigan VTU Platform 3</h1>
-            </div>
-            <div class="front front-4">
-                <h1 class="w-text-white w-bold-xx w-xxlarge w-display-middle w-animate-opacity">Welcome To Rigan VTU Platform 4</h1>
-            </div>
-            <div class="front front-5">
-                <h1 class="w-text-white w-bold-xx w-xxlarge w-display-bottomright w-animate-bottom">Welcome To Rigan VTU Platform 5</h1>
-            </div>
-        </div>
-        <div class="btm-slides">
-            <span onclick="btm_slide(1)"></span>
-            <span onclick="btm_slide(2)"></span>
-            <span onclick="btm_slide(3)"></span>
-            <span onclick="btm_slide(4)"></span>
-            <span onclick="btm_slide(5)"></span>
-        </div>
-        <div class="sliders left" onclick="side_slide(-1)">
-            <span class="fa fa-angle-left"></span>
-        </div>
-        <div class="sliders right" onclick="side_slide(1)">
-            <span class="fa fa-angle-right"></span>
-        </div>
-        
-    </section>
-
-    <!-- services -->
-    <section id="features">
-
-        <h1 class="w-text-theme" id="services">Our Services</h1>
-
-        <div class="fea-base">
-
-            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
-                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-signal"></i></div>
-                <div>
-                    <h3>Buy Airtime</h3>
-                    <p>Airtel, MTN, GLO, 9Mobile</p>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
-                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-wifi"></i></div>
-                <div>
-                    <h3>Buy Data</h3>
-                    <p>SME, Corporate, Gifting</p>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
-                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-desktop"></i></div>
-                <div>
-                    <h3>Cable TV</h3>
-                    <p>DSTV, GoTV, Startimes</p>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
-                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-lightbulb-o"></i></div>
-                <div>
-                    <h3>Electricity</h3>
-                    <p>IBEDC, EKEDC, etc</p>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
-                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-graduation-cap"></i></div>
-                <div>
-                    <h3>WAEC E-Pins</h3>
-                    <p>SSCE Result Pins</p>
-                </div>
-            </div>
-
-            <div class="fea-box w-text-theme w-hover-theme" data-toggle="modal" data-target="#loginModal">
-                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-list-alt"></i></div>
-                <div>
-                    <h3>Wallet Summary</h3>
-                    <p>Wallet Funding & History</p>
-                </div>
-            </div>
-
-            <div class="fea-box w-text-theme w-hover-theme">
-                <div class="fea-icon w-border w-border-theme w-hover-border-white"><i class="fa fa-code"></i></div>
-                <div>
-                    <h3>Developer's API</h3>
-                    <p>Get An Affiliate Website</p>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- features -->
-    <section id="features">
-
-        <h1 class="w-text-theme" id="services">Why Choose Us?</h1>
-
-        <div class="fea-base">
-
-            <div class="fea-box w-text-theme">
-                <div class="fea-icon w-border w-border-theme"><i class="fa fa-flash"></i></div>
-                <div>
-                    <h3>We're Fast</h3>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme">
-                <div class="fea-icon w-border w-border-theme"><i class="fa fa-android"></i></div>
-                <div>
-                    <h3>Automated Services</h3>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme">
-                <div class="fea-icon w-border w-border-theme"><i class="fa fa-dollar"></i></div>
-                <div>
-                    <h3>Best Prices</h3>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme">
-                <div class="fea-icon w-border w-border-theme"><i class="fa fa-lock"></i></div>
-                <div>
-                    <h3>100% Secure</h3>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme">
-                <div class="fea-icon w-border w-border-theme"><i class="fa fa-user-secret"></i></div>
-                <div>
-                    <h3>We're Reliable</h3>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme">
-                <div class="fea-icon w-border w-border-theme"><i class="fa fa-phone"></i></div>
-                <div>
-                    <h3>24/7 Online</h3>
-                </div>
-            </div>
-            <div class="fea-box w-text-theme">
-                <div class="fea-icon w-border w-border-theme"><i class="fa fa-group"></i></div>
-                <div>
-                    <h3>Customer Support</h3>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing">
-        <h1 class="w-text-theme" id="services">Our Data Pricing</h1>
-        <div class="price-list">
-            <div class="container price-con airtel-list">
-                <img src="static/image/Airtel Nigeria Logo.png" alt="" />
-                <table class="table w-text-white w-bold-x">
-                    <tbody>
-                        <tr>
-                            <td>100MB</td>
-                            <td>N35</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>300MB</td>
-                            <td>N70</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>500MB</td>
-                            <td>N120</td>
-                            <td>30 Days</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="container price-con mtn-list">
-                <img src="static/image/MTN Logo.png" alt="" />
-                <table class="table w-text-black w-bold-x">
-                    <tbody>
-                        <tr>
-                            <td>100MB</td>
-                            <td>N35</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>300MB</td>
-                            <td>N70</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>500MB</td>
-                            <td>N120</td>
-                            <td>30 Days</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="container price-con glo-list">
-                <img src="static/image/Globacom Limited Logo.svg" alt="" />
-                <table class="table w-text-white w-bold-x">
-                    <tbody>
-                        <tr>
-                            <td>100MB</td>
-                            <td>N35</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>300MB</td>
-                            <td>N70</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>500MB</td>
-                            <td>N120</td>
-                            <td>30 Days</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="container price-con etisalat-list">
-                <img src="static/image/9mobile Logo.png" alt="" />
-                <table class="table w-text-white w-bold-x">
-                    <tbody>
-                        <tr>
-                            <td>100MB</td>
-                            <td>N35</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>300MB</td>
-                            <td>N70</td>
-                            <td>7 Days</td>
-                        </tr>
-                        <tr>
-                            <td>500MB</td>
-                            <td>N120</td>
-                            <td>30 Days</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Testimonial section -->
-    <section id="testimonial">
-        <h1 class="w-text-theme">Testimonials</h1>
-        <div class="testimonial owl-carousel">
-            <div class="test-con">
-                <img src="static/image/avatar-1.jpg" alt="" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <h3>John Philip</h3>
-            </div>
-            <div class="test-con">
-                <img src="static/image/avatar-2.jpg" alt="" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <h3>John Doe</h3>
-            </div>
-            <div class="test-con">
-                <img src="static/image/avatar-3.jpg" alt="" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <h3>Jane Maddy</h3>
-            </div>
-            <div class="test-con">
-                <img src="static/image/avatar.png" alt="" />
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <h3>Hermione</h3>
-            </div>
-            <div class="test-con">
-                <img src="static/image/kisspng-nigeria-mtn-group-globacom-etisalat-mobile-phones-etisalat.jpg" alt=""/>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <h3>Mark Maxwel</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- partners -->
-    <section id="features">
-        <h1 class="w-text-theme" id="services">Our Partners</h1>
-        <div class="part-con">
-            <img src="static/image/MTN Logo.png" alt="" />
-            <img src="static/image/9mobile Logo.png" alt="" />
-            <img src="static/image/Airtel Nigeria Logo.png" alt="" />
-            <img src="static/image/Globacom Limited Logo.svg" alt="" />
-        </div>
-    </section>
-
-    <footer class="w-theme-d5 w-padding-8 w-center">
-        <p>Copyright &copy; 2023 RiganVTU | Developed By Rigan Tech</p>
-        <a href="#" class="w-text-shadow"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;
-        <a href="#" class="w-text-shadow"><i class="fa fa-twitter"></i></a>&nbsp;&nbsp;
-        <a href="#" class="w-text-shadow"><i class="fa fa-whatsapp"></i></a>&nbsp;&nbsp;
-        <a href="#" class="w-text-shadow"><i class="fa fa-linkedin"></i></a>
-    </footer>
-
-    <script src="static/js/script.js"></script>
     <script>
-        $(".testimonial").owlCarousel({
-  margin: 20,
-  loop: true,
-  autoplay: true,
-  autoplayTimeout: 3000,
-  autoplayHoverPause: true,
-  responsive: {
-  0:{
-    items:1,
-    nav: false
-  },
-  600:{
-    items:2,
-    nav: false
-  },
-  1000:{
-    items:3,
-    nav: false
-  }
-  }
-  });
+        if(localStorage.api_key) {
+            location.href = './admin.html';
+        }
     </script>
+    <?on: "hashchange"?>
+
+<?eval:
+"var hash=location.hash
+hash=hash.replace(/^\/?#\/?|^/img,'/')
+var page=document.querySelector(`template[route='${hash}']`)||'404';"?>
+
+<?use-template: page?>
+<?end?>
+
+    <script src="./static/js/functions.js"></script>
+    <script src="./static/js/login.js"></script>
     
 </body>
 </html>

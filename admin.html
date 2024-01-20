@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- template -->
+  
+  <!-- navigation bar -->
+  <template id="sidenav">
+
+    <div id="mySidenav" class="sidenav">
+      <h3 class="w-bold-x site-title">
+        RiganVTU
+      </h3>
+      <a href="javascript:void(0)" class="closebtn" onclick="openNav()">&times;</a>
+      <a href="#" class="dash-act"><i class="fa fa-th-large"></i> Dashboard</a>
+      <a href="#courses" class="course-act"><i class="fa fa-laptop"></i> Courses</a>
+      <a href="#projects" class="pro-act"><i class="fa fa-code"></i> Projects</a>
+      <a class="accordion set-act"><i class="fa fa-gear"></i> Settings</a>
+      <ul class="panel">
+        <li><a href="#change_password" class="pass-act"><i class="fa fa-key"></i> Password</a></li>
+        <li><a href="#account_settings" class="acc-act"><i class="fa fa-lock"></i> Account Settings</a></li>
+      </ul>
+      <a href="#" class="w-text-red logout-btn"><i class="fa fa-power-off"></i> Logout</a>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav w-card-8">
+      <div class="dash-act"><a href="#"><i class="fa fa-th"></i><br>Home</a></div>
+      <div class="fund-act"><a href="#fund_wallet"><i class="fa fa-dollar"></i><br>Fund</a></div>
+      
+      <!--
+      <div class="dropdown">
+          <a href="#" class=" dropdown-toggle" data-toggle="dropdown"><i class="fa fa-dollar"></i><br>Fund</a>
+          <ul class="dropdown-menu w-card-16 w-left">
+              <li><a class="dropdown-item w-text-black w-hover-theme w-padding" href="#"><i class="fa fa-money"></i> Manual Funding</a></li>
+              <li><a class="dropdown-item w-text-black w-hover-theme w-padding" href="#"><i class="fa fa-exchange"></i> Bank Transfer</a></li>
+              <li><a class="dropdown-item w-text-black w-hover-theme w-padding" href="#"><i class="fa fa-cc"></i> Debit Card</a></li>
+          </ul>
+      </div>
+  -->
+      <div class="saving-act"><a href="#savings"><i class="fa fa-money"></i><br>Savings</a></div>
+      <div class="profile-act"><a href="#profile"><i class="fa fa-smile-o"></i><br>Me</a></div>
+      <div><a href="#" class="logout-btn"><i class="fa fa-power-off"></i><br>Logout</a></div>
+      
+  </div>
+
+    <script src="./static/js/login.js"></script>
+    <script>
+      
+      $('.logout-btn').click(function(e) {
+        e.preventDefault();
+        logout();
+      })
+      
+      var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+} 
+
+    </script>
+  </template>
+
+  <!-- header -->
+  <template id="header">
+    <header>
+      
+      <form class="w-margin-right" id="search-form">
+        <h3 class="w-bold-x site-title">
+          RiganVTU
+        </h3>
+      </form>
+      <div class="side-content">
+        <div class="side-content admin-pro w-margin-right">
+          <img src="./static/image/avatar.png" alt="" class="admin-img" />
+        </div>
+        <a class="notificationb" href="#notifications"><i class="fa fa-bell"></i></a>
+      </div>
+    </header>
+    
+  </template>
+
+    <!-- for dashboard -->
+    <template id="dashboard">
+    
+      <?use-template: "sidenav"?>
+      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+      <main class="">
+        <?use-template: "header"?>
+        <h3>Welcome Back <?print: localStorage.names?></h3>
+
+        <div class="dash w-padding w-round-large w-padding-8">
+          <div class="w-flex w-flex-between">
+              <span>Balance <span class="view-balance"><i class="fa fa-eye"></i></span></span>
+              <a href="#transaction_history" class="w-text-white w-hover-text-yellow">Transaction History <i class="fa fa-angle-right"></i></a>
+          </div>
+          <div class="balance">
+              N<span id="acc-bal"><i class="fa fa-refresh"></i></span><span id="acc-bal-a">****</span><br><br>
+              <p>& Bonus N<span id="bon-bal"></span></p>
+          </div>
+          <div class="dash-flex">
+              <div>
+                  <a href="#fund_wallet" class="w-text-theme"><i class="fa fa-plus"></i></a>
+                  <p>Fund</p>
+              </div>
+              <div>
+                  <a href="#transfer" class="w-text-theme"><i class="fa fa-exchange"></i></a>
+                  <p>Transfer</p>
+              </div>
+              <div>
+                  <a href="#withdraw" class="w-text-theme"><i class="fa fa-dollar"></i></a>
+                  <p>Withdraw</p>
+              </div>
+          </div>
+      </div>
+
+      <!-- services -->
+    <section id="features">
+
+      <div class="fea-base">
+
+          <a class="ser-icon" data-name="airtime">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-phone"></i></div>
+                  <div>
+                      <h3>Airtime</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a class="ser-icon" data-name="data">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-wifi"></i></div>
+                  <div>
+                      <h3>Data</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a class="ser-icon" data-name="cable">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-desktop"></i></div>
+                  <div>
+                      <h3>Cable/TV</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a class="ser-icon" data-name="electricity">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-lightbulb-o"></i></div>
+                  <div>
+                      <h3>Electricity</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a href="#examination">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-graduation-cap"></i></div>
+                  <div>
+                      <h3>Exam PIN</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a href="#transaction_history">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-history"></i></div>
+                  <div>
+                      <h3>History</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a href="#savings">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-bank"></i></div>
+                  <div>
+                      <h3>Savings</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a href="#card_printing">
+              <div class="fea-box">
+                  <div class="fea-icon"><i class="fa fa-print"></i></div>
+                  <div>
+                      <h3>Card Printing</h3>
+                  </div>
+              </div>
+          </a>
+
+          <a href="#airtime2cash">
+            <div class="fea-box">
+                <div class="fea-icon"><i class="fa fa-exchange"></i></div>
+                <div>
+                    <h3>Airtime2Cash</h3>
+                </div>
+            </div>
+        </a>
+
+      </div>
+
+  </section>
+
+      </main>
+
+      <div class="airtime_con side-con">
+        <div class="mb-2">
+          <button class="add_emp_btn c_back_btn"><i class="fa fa-arrow-left"></i></button>
+          <form class="airtime-form mt-2" data-id="">
+            <h3>Buy Airtime</h3>
+            <div class="form">
+                <div class="field">
+                    <input type="tel" class="form-control" id="airtime-phone" placeholder="Phone Number" name="phone" required>
+                    <div class="icons"></div>
+                </div>
+
+                <h4 class="w-bold-x w-text-green" id="net-ind"></h4>
+                
+                <div class="field w-flex w-flex-around w-align-center">
+                  <div class="custom-control prov1 provider" data-id="Airtel">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/airtel.png" alt=""/>
+                  </div>
+                  <div class="custom-control prov1 provider" data-id="MTN">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/mtn.jpg" alt="" />
+                  </div>
+                  <div class="custom-control prov1 provider" data-id="GLO">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/glo.svg" alt="" />
+                  </div>
+                  <div class="custom-control prov1 provider" data-id="9Mobile">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/etisalat.png" alt="" />
+                  </div>
+                </div>
+                <div class="field">
+                    <input type="number" class="form-control" id="airtime-amount" placeholder="Amount (50-500,000)" name="amount" required>
+                    <div class="icons"></div>
+                </div>
+                <div class="field">
+                    <select class="form-control" id="payment" required>
+                        <option class="w-padding h5" selected>--Payment Method--</option>
+                        <option class="w-padding h5" value="balance">Wallet Balance</option>
+                        <option class="w-padding h5" value="bonus">Bonus Balance</option>
+                      </select>
+                </div>
+
+                <h5><span class="w-bold-x">Wallet Balance: </span>N<span class="acc-bal2"></span></h5>
+                <h5><span class="w-bold-x">Bonus Balance: </span>N<span class="bon-bal2"></span></h5>
+
+                <input type="hidden" id="provider" value="" />
+                <button class="" type="submit" id="airtime-btn">Buy Airtime</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="data_con side-con">
+        <div class="mb-2">
+          <button class="add_emp_btn c_back_btn"><i class="fa fa-arrow-left"></i></button>
+          <form class="data-form mt-2" data-id="">
+            <h3>Buy Data Bundle</h3>
+            <div class="form">
+                <div class="field">
+                    <input type="tel" class="form-control" id="data-phone" placeholder="Phone Number" name="phone" required>
+                    <div class="icons"></div>
+                </div>
+
+                <h4 class="w-bold-x w-text-green" id="net-ind2"></h4>
+                
+                <div class="field w-flex w-flex-around w-align-center">
+                  <div class="custom-control prov2 provider" data-id="Airtel">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/airtel.png" alt=""/>
+                  </div>
+                  <div class="custom-control prov2 provider" data-id="Mtn">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/mtn.jpg" alt="" />
+                  </div>
+                  <div class="custom-control prov2 provider" data-id="Glo">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/glo.svg" alt="" />
+                  </div>
+                  <div class="custom-control prov2 provider" data-id="9mobile">
+                    <div class="mark"><i class="fa fa-check-circle"></i></div>
+                    <img src="/static/image/etisalat.png" alt="" />
+                  </div>
+                </div>
+
+                <div class="field">
+                  <select class="form-control" id="data-select" required>
+                      
+                    </select>
+                </div>
+                
+                <div class="field">
+                    <input type="text" class="form-control" id="data-amount" placeholder="Amount" readonly required>
+                    <div class="icons"></div>
+                </div>
+                <div class="field">
+                    <select class="form-control" id="payment2" required>
+                        <option class="w-padding h5" selected>--Payment Method--</option>
+                        <option class="w-padding h5" value="balance">Wallet Balance</option>
+                        <option class="w-padding h5" value="bonus">Bonus Balance</option>
+                      </select>
+                </div>
+
+                <h5><span class="w-bold-x">Wallet Balance: </span>N<span class="acc-bal2"></span></h5>
+                <h5><span class="w-bold-x">Bonus Balance: </span>N<span class="bon-bal2"></span></h5>
+
+                <button class="" type="submit" id="data-btn">Buy Data</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <script src="./static/js/dashboard.js"></script>
+      <script>
+      $('.dash-act').addClass('active')
+      
+      $('.ser-icon').click(function(e) {
+          e.preventDefault();
+          let id = $(this).data('name')
+          $(`.${id}_con`).addClass('active')
+        })
+      $('.prov1').click(function() {
+        var pro = $(this).data('id');
+        $('.provider').removeClass('active');
+        $('.mark').hide();
+        $(this).addClass('active');
+        $(this).children('.mark').show();
+        $('#provider').val(pro)
+      })
+      $('.prov2').click(function() {
+        var pro = $(this).data('id');
+        $('.provider').removeClass('active');
+        $('.mark').hide();
+        $(this).addClass('active');
+        $(this).children('.mark').show();
+        $('.data-option').hide();
+        $(`.data-option[data-name=${pro}]`).show();
+        //$('#provider2').val(pro)
+
+      })
+      $('#data-select').on('change', function() {
+        var amt = $('.data-option:selected').data('id');
+        $('#data-amount').val(`N${amt}`);
+      })
+      $('#airtime-phone').on('input', function() {
+        let value = $(this).val();
+        let stat = ``;
+        if($.grep(mtn, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> MTN Mobile Network`
+        }
+        else if($.grep(glo, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> GLO Mobile Network`
+        }
+        else if($.grep(etisalat, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> 9Mobile Mobile Network`
+        }
+        else if($.grep(airtel, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> Airtel Mobile Network`
+        }
+        else if(value === '' || value.length < 4) {
+          stat = ``
+        }
+        else {
+          stat = `<i class="fa fa-warning"></i> Unrecognized Network`
+        }
+        $('#net-ind').html(stat)
+      })
+        
+      $('#data-phone').on('input', function() {
+        let value = $(this).val();
+        let stat = ``;
+        if($.grep(mtn, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> MTN Mobile Network`
+        }
+        else if($.grep(glo, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> GLO Mobile Network`
+        }
+        else if($.grep(etisalat, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> 9Mobile Mobile Network`
+        }
+        else if($.grep(airtel, function(prefix) {
+          return value.startsWith(prefix);
+        }).length > 0) {
+          stat = `<i class="fa fa-check-circle"></i> Airtel Mobile Network`
+        }
+        else if(value === '' || value.length < 4) {
+          stat = ``
+        }
+        else {
+          stat = `<i class="fa fa-warning"></i> Unrecognized Network`
+        }
+        $('#net-ind2').html(stat)
+      })
+        
+      $('.c_back_btn').click(function() {
+          $(this).parent('div').parent('.side-con').removeClass('active')
+        });
+        var flag = 1;
+$('.view-balance').on('click', function() {
+  if(flag == 1) {
+    $('#acc-bal').hide();
+    $('#acc-bal-a').show();
+    $(this).html(`<i class="fa fa-eye-slash"></i>`);
+    flag = 0;
+  }
+  else {
+    $('#acc-bal').show();
+    $('#acc-bal-a').hide();
+    $(this).html(`<i class="fa fa-eye"></i>`);
+    flag = 1;
+  }
+})
+      
+  $('.airtime-form').on('submit', function(e) {
+    e.preventDefault();
+    buyAirtime()
+  })
+  $('.data-form').on('submit', function(e) {
+    e.preventDefault();
+    buyData()
+  })
+      </script>
+</template>
+
+<template id="fund_wallet">
+  <?use-template: "sidenav"?>
+      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+      <main class="">
+        <!-- services -->
+        <h3>Fund Wallet</h3>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active w-card-2" data-toggle="tab" href="#home"><i class="fa fa-credit-card"></i> Card</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link w-card-2" data-toggle="tab" href="#menu1"><i class="fa fa-bank"></i> Bank</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link w-card-2" data-toggle="tab" href="#menu2"><i class="fa fa-exchange"></i> Transfer</a>
+        </li>
+        </ul>
+      
+        <!-- Tab panes -->
+<div class="tab-content" style="margin-bottom:50px;">
+  <div class="tab-pane active container" id="home">
+    <form class="content fund-card-form">
+        
+        <div class="form">
+          <p style="text-align: left;" class="w-bold-x">Fund wallet with Monnify in seconds. 1.5% charges apply on any amount you fund.</p>
+            <div class="field">
+              <label for="name">Account Holder</label>
+                <input type="text" class="form-control" id="fund-name" value="" readonly />
+                <div class="icons"></div>
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="fund-email" value="" readonly />
+                <div class="icons"></div>
+            </div>
+            <div class="field">
+              <label for="amount">Amount</label>
+                <input type="number" class="form-control" id="fund-amount" placeholder="N100-N200,000" name="amount" required>
+                <div class="icons"></div>
+            </div>
+            <button class="add-fund-btn" type="submit"><i class="fa fa-credit-card"></i> Proceed to Pay</button>
+        </div>
+    </form>
+  </div>
+
+  <div class="tab-pane container" id="menu1">
+    <form class="content">
+        
+        <div class="form">
+          <p style="text-align: left;" class="w-bold-x">Deposit your money into any of the account provided below and your wallet will be credited after confirmation.</p>
+            <div class="field">
+              <label for="name">ACCOUNT NAME</label>
+                <input type="text" class="form-control" id="name" name="name" value="Hassan Ridwan Eniola" readonly />
+                <div class="icons"></div>
+            </div>
+            <div class="field">
+              <label for="opay">(OPAY/PALMPAY)</label>
+                <input type="number" class="form-control" id="opay" value="7011978058" readonly>
+                <div class="icons copy-icon">Copy</div>
+            </div>
+            <div class="field">
+              <label for="uba">(UBA)</label>
+                <input type="number" class="form-control" id="uba" value="2131968770" readonly>
+                <div class="icons copy-icon">Copy</div>
+            </div>
+        </div>
+    </form>
+  </div>
+
+  <div class="tab-pane container" id="menu2">
+    <form class="content">
+        
+      <div class="form">
+        <p style="text-align: left;" class="w-bold-x">Transfer into any of these account below to automatically fund your wallet. 1.5% charges apply on any amount you fund.</p>
+        <p style="text-align: left;" class="w-bold-x w-text-red">Note: The account number belongs to only you.</p>
+        <div class="field">
+            <label for="name">ACCOUNT NAME</label>
+              <input type="text" class="form-control" id="trans-name" value="" readonly />
+              <div class="icons"></div>
+        </div>
+          
+        <div class="monn-acc">
+          
+        </div>
+
+      </div>
+  </form>
+  </div>
+
+</div>
+      </main>
+
+      <script src="./static/js/fund.js"></script>
+      <script>
+        $('.fund-act').addClass('active')
+        $('.copy-icon').click(function() {
+        //alert($(this).siblings('input').val())
+        navigator.clipboard.writeText($(this).siblings('input').val());
+        $(this).html(`Copied!`);
+      })
+      </script>
+</template>
+
+<template id="savings">
+  <?use-template: "sidenav"?>
+      <main class="">
+        <h4 class="w-bold-x w-center w-text-green">Savings & Finance</h4>
+      </main>
+      <script src="./static/js/savings.js"></script>
+      <script>
+        $('.saving-act').addClass('active');
+      </script>
+</template>
+
+<template id="">
+  <?use-template: "sidenav"?>
+      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+      <main class="">
+        <?use-template: "header"?>
+      </main>
+      <script src="./static/js/"></script>
+      <script></script>
+</template>
+
+
+  <!-- for transaction history -->
+  <template id="transaction_history">
+    <?use-template: "sidenav"?>
+    <main class="">
+    <h4 class="w-bold-x w-center w-text-green">Transaction History</h4>
+    <div class="w-flex w-flex-start w-align-center">
+      <select class="custom-select status-filter w-margin-right" style="width:100px">
+        <option selected value="all">All Status</option>
+        <option value="Success">Success</option>
+        <option value="Pending">Pending</option>
+        <option value="Failed">Failed</option>
+      </select>
+      <input type="month" class="form-control" id="trans_from" style="width:100px">
+      <div class="h6 w-bold-x">&nbsp;To&nbsp;</div>
+      <input type="month" class="form-control" id="trans_to" style="width:100px">
+    </div>
+      <table class="table">
+                    <tbody class="trans-row">
+                      <tr>
+                        <td colspan="3">
+                          <div class="loader">
+                            <div class="ball"></div>
+                            <div class="ball"></div>
+                            <div class="ball"></div>
+                            <div class="ball"></div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+      </table>
+    </main>
+
+    <!-- Transaction details -->
+    <div class="trans_det_con side-con">
+          <div class="mb-2">
+            <button class="add_emp_btn c_back_btn"><i class="fa fa-arrow-left"></i></button>
+            <h3>Transaction Detail</h3>
+            <div class="trans-detail-con"></div>
+          </div>
+        </div>
+
+        <script src="./static/js/history.js"></script>
+    <script>
+      $('.profile-act').addClass('active');
+      $('.c_back_btn').click(function() {
+          $(this).parent('div').parent('.side-con').removeClass('active')
+        });
+      $('.status-filter').on('change', function() {
+        getTransactions();
+      })
+    </script>
+  </template>
+
+  <!-- for projects -->
+  <template id="projects">
+    <?use-template: "sidenav"?>
+        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+        <main class="">
+          <?use-template: "header"?>
+          <h2 class="w-bold-x w-center">Projects</h2>
+          <div class="w-flex w-flex-around w-align-center">
+            <div class="h5 w-bold-x" style="min-width:80px"><i class="fa fa-filter"></i> Filter</div>
+            <select class="custom-select course-filter">
+              
+            </select>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>Title</td>
+                  <td>Course</td>
+                  <td colspan="2">Actions</td>
+                </tr>
+              </thead>
+              <tbody class="pro-row">
+                <tr>
+                  <td colspan="4">
+                    <div class="loader">
+                      <div class="ball"></div>
+                      <div class="ball"></div>
+                      <div class="ball"></div>
+                      <div class="ball"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+
+        <div class="pro_c_con side-con">
+          <div class="mb-2">
+            <button class="add_emp_btn c_back_btn"><i class="fa fa-arrow-left"></i></button>
+
+            <div class="wrapper">
+              <input type="radio" name="slider" checked id="home">
+              <input type="radio" name="slider" id="blog">
+              <div class="tabs">
+                <label for="home" class="home"><i class="fa fa-briefcase"></i>Details</label>
+                <label for="blog" class="blog"><i class="fa fa-book"></i>Submission</label>
+                <div class="slider"></div>
+              </div>
+              <section>
+                <div class="pro-detail w-padding-top content content-1">
+                  <form class="pro-edit-form mt-2" data-id="">
+                    <div class="form-group">
+                      <label for="pro-title">Title:</label>
+                      <input type="text" readonly class="form-control" id="pro-title" value="">
+                    </div>
+                    <div class="form-group">
+                      <label for="pro-des">Description:</label>
+                      <textarea class="form-control html-text" id="pro-des" value="" style="min-height:400px;"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="edit-form-btn btn btn-primary btn-block">Save Project</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="content content-2">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <td>Student</td>
+                          <td>Links</td>
+                          <td>Actions</td>
+                        </tr>
+                      </thead>
+                      <tbody class="pro-sub-row">
+                        <tr>
+                          <td colspan="3">
+                            <div class="loader">
+                              <div class="ball"></div>
+                              <div class="ball"></div>
+                              <div class="ball"></div>
+                              <div class="ball"></div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+          </div>
+    
+        </div>
+
+        <div class="sub_c_con side-con">
+          <div class="mb-2">
+            <button class="add_emp_btn c_back_btn2"><i class="fa fa-arrow-left"></i></button>
+            <form class="sub-edit-form mt-2" data-id="">
+              <div class="form-group">
+                <label for="sub-name">Names:</label>
+                <input type="text" readonly class="form-control" id="sub-name" value="">
+              </div>
+              <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control html-text" id="comment" value="" style="min-height:400px;"></textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="sub-form-btn btn btn-primary btn-block">Save Submission</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <script src="./static/js/project.js"></script>
+    <script>
+      $('.pro-act').addClass('active');
+      $('.c_back_btn').click(function() {
+        $('.pro_c_con').removeClass('active')
+      });
+      $('.c_back_btn2').click(function() {
+        $('.sub_c_con').removeClass('active')
+      });
+      $('.course-filter').on('change', function() {
+        let loader = `<tr>
+                <td colspan="2">
+                  <div class="loader">
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                  </div>
+                </td>
+              </tr>`;
+        $('.pro-row').empty().append(loader)
+        getProjects();
+      })
+      
+      $('.pro-edit-form').on('submit', function(e) {
+        e.preventDefault();
+        let pro_id = $(this).data('id')
+        //console.log(pro_id)
+        saveProject(pro_id)
+      })
+      $('.sub-edit-form').on('submit', function(e) {
+        e.preventDefault();
+        let pro_id = $(this).data('id')
+        //console.log(pro_id)
+        saveSubmission(pro_id)
+      })
+    </script>
+  </template>
+
+
+
+  <!-- error 404 page -->
+  <template id="404">
+    <img src="./static/image/404.jpg" style="width:100%;height:auto" alt="" />
+    <?include: "templates/_parts/404.html"?><?end?>
+</template>
+
+<!-- Routes -->
+<!-- homepage -->
+<template route="/">
+  <?use-template: "dashboard"?>
+</template>
+<template route="/fund_wallet">
+  <?use-template: "fund_wallet"?>
+</template>
+<template route="/transaction_history">
+  <?use-template: "transaction_history"?>
+</template>
+<template route="/savings">
+  <?use-template: "savings"?>
+</template>
+
+<!-- Standard Meta -->
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<!-- Site Properties -->
+<title></title>
+<link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="./static/css/fontawesome.css">
+<link rel="stylesheet" type="text/css" href="./static/css/rigan.css">
+<link rel="stylesheet" type="text/css" href="./static/themes/w-theme-blue.css">
+<link rel="stylesheet" type="text/css" href="./dist/semantic.min.css">
+<link rel="stylesheet" type="text/css" href="./static/css/sweetalert.min.css">
+<link rel="stylesheet" type="text/css" href="./static/css/nav.css">
+<script src="./static/module/swif.js"></script>
+<script src="./dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<script src="./static/js/bootstrap.min.js"></script>
+<script src="./static/js/sweetalert.min.js"></script>
+<script src="./dist/semantic.min.js"></script>
+<!--
+<link rel="stylesheet" href="./static/lib/prism.css" />
+<link rel="stylesheet" href="./static/lib/prism2.css" />
+<link rel="stylesheet" href="./static/lib/codemirror.css">
+<link rel="stylesheet" href="./static/css/editor_2.css" />
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>                                                                                        
+
+<script>
+var on = XJSX.event.on,
+emit = XJSX.event.emit;
+emit("hashchange");
+</script>
+
+<style type="text/css">
+
+</style>
+</head>
+<body>
+  <script>
+    if(!localStorage.api_key || !localStorage.names) {
+      location.href = './index.html';
+    }
+</script>
+
+<!-- Notification -->
+<div class="notification w-card-4 w-white">
+  <div class="note-header w-text-green w-bold-x">
+      
+  </div>
+  <div class="note-body">
+      
+  </div>
+  <div class="note-footer"></div>
+</div>
+  
+<?on: "hashchange"?>
+
+<?eval:
+"var hash=location.hash
+hash=hash.replace(/^\/?#\/?|^/img,'/')
+var page=document.querySelector(`template[route='${hash}']`)||'404';"?>
+
+
+<?use-template: page?>
+<?end?>
+
+<script src="./static/js/functions.js"></script>
+
+</body>
+</html>                                                                                                                                               
