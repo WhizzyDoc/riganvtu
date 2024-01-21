@@ -74,9 +74,9 @@ for (i = 0; i < acc.length; i++) {
     <header>
       
       <form class="w-margin-right" id="search-form">
-        <h3 class="w-bold-x site-title">
+        <h4 class="w-bold-x site-title">
           RiganVTU
-        </h3>
+        </h4>
       </form>
       <div class="side-content">
         <div class="side-content admin-pro w-margin-right">
@@ -108,15 +108,15 @@ for (i = 0; i < acc.length; i++) {
           </div>
           <div class="dash-flex">
               <div>
-                  <a href="#fund_wallet" class="w-text-theme"><i class="fa fa-plus"></i></a>
+                  <a href="#fund_wallet" class="w-text-green"><i class="fa fa-plus"></i></a>
                   <p>Fund</p>
               </div>
               <div>
-                  <a href="#transfer" class="w-text-theme"><i class="fa fa-exchange"></i></a>
+                  <a href="#transfer" class="w-text-green"><i class="fa fa-exchange"></i></a>
                   <p>Transfer</p>
               </div>
               <div>
-                  <a href="#withdraw" class="w-text-theme"><i class="fa fa-dollar"></i></a>
+                  <a href="#withdraw" class="w-text-green"><i class="fa fa-dollar"></i></a>
                   <p>Withdraw</p>
               </div>
           </div>
@@ -567,14 +567,156 @@ $('.view-balance').on('click', function() {
       </script>
 </template>
 
-<template id="">
+<template id="transfer">
   <?use-template: "sidenav"?>
       <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
       <main class="">
-        <?use-template: "header"?>
+        <h4 class="w-bold-x w-center w-text-green">Transfer To Bank Account</h4>
+        <form id="transfer-form">
+          <div class="modal fade" id="transferModal">
+            <div class="modal-dialog modal-lg" style="margin-bottom: 50px">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="trans-header">Transfer Details</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                
+                    <!-- Modal body -->
+                    <div class="modal-body" id="trans-body">
+                        <table class="table">
+                          <tbody>
+                            <tr>
+                              <td style="text-align:left;">Account Name:</td>
+                              <td style="text-align:right;"><span id="trans_name"></span></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:left;">Account Number:</td>
+                              <td style="text-align:right;"><span id="trans_num"></span></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:left;">Bank Name:</td>
+                              <td style="text-align:right;"><span id="trans_bank"></span></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:left;">Amount:</td>
+                              <td style="text-align:right;"><span id="trans_amt"></span></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:left;">Remark:</td>
+                              <td style="text-align:right;"><span id="trans_des"></span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" disabled class="btn btn-success trans-btn">Proceed to Transfer</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="form">
+              <div class="field">
+                <label>Account Number</label>
+                  <input type="text" class="form-control" id="acc_num" placeholder="Enter Account Number" name="acc_number" maxlength="10" required>
+              </div>
+              
+              <div class="field">
+                <label>Bank Name</label>
+                  <input type="text" id="bank" value="Select Bank" class="form-control" readonly />
+            </div>
+
+            <h6 class="w-bold-xx w-text-green" id="verify-name"></h6>
+
+              <div class="field">
+                <label>Amount</label>
+                  <input type="number" class="form-control" id="amount" placeholder="minimum of N100" name="amount" required>
+                  <div class="icons"></div>
+              </div>
+
+              <div class="field">
+                <label>Description</label>
+                <input type="text" class="form-control" id="description" placeholder="What is the transfer for?" name="description" required />
+                
+            </div>
+              
+              <input type="hidden" id="bank_code" value="" required />
+              <a class="" id="transfer-btn" data-toggle="modal" data-target="#transferModal">Submit</a>
+          </div>
+        </form>
       </main>
-      <script src="./static/js/"></script>
-      <script></script>
+
+      <div class="bank_con side-con">
+        <div class="mb-2">
+          <button class="add_emp_btn c_back_btn"><i class="fa fa-arrow-left"></i></button>
+          <form id="bank-search">
+            <input type="text" class="form-control" id="bank-input" style="margin-top:20px !important" placeholder="Search Bank..." autofocus />
+          </form>
+          <div class="bank-list">
+            <div class="loader">
+              <div class="ball"></div>
+              <div class="ball"></div>
+              <div class="ball"></div>
+              <div class="ball"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="./static/js/transfer.js"></script>
+      <script>
+        $('.dash-act').addClass('active')
+        $('#transfer-btn').click(function() {
+          //$('#trans_name').html($('#acc_num').val());
+          $('#trans_num').html($('#acc_num').val());
+          
+          if($('#bank').val() !== "Select Bank") {
+            $('#trans_bank').html($('#bank').val());
+          }
+          $('#trans_amt').html($('#amount').val());
+          $('#trans_des').html($('#description').val());
+      })
+      $('#transfer-form').submit(function(e) {
+            e.preventDefault();
+            transferFund()
+      })
+        $('#bank').click(function(){
+          $('.bank_con').addClass('active');
+          getBanks();
+        })
+        $('#acc_num').on('input', function() {
+          verifyAccount()
+        })
+        $('#bank-input').on('input', function() {
+          let v = $(this).val().toLowerCase();
+          $('.bank[data-name]').each(function() {
+            let dataName = $(this).data('name').toLowerCase();
+            if(dataName.includes(v)) {
+              $(this).show()
+            }
+            else {
+              $(this).hide()
+            }
+          })
+        })
+        $('.c_back_btn').click(function() {
+          $(this).parent('div').parent('.side-con').removeClass('active')
+        });
+      </script>
+</template>
+
+<template id="profile">
+  <?use-template: "sidenav"?>
+      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+      <main class="">
+        <h4 class="w-bold-x w-center w-text-green">Profile</h4>
+      </main>
+      <script src="./static/js/profile.js"></script>
+      <script>
+        $('.profile-act').addClass('active')
+      </script>
 </template>
 
 
@@ -629,6 +771,16 @@ $('.view-balance').on('click', function() {
         getTransactions();
       })
     </script>
+  </template>
+
+  <template id="">
+    <?use-template: "sidenav"?>
+        <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+        <main class="">
+          <h4 class="w-bold-x w-center w-text-green"></h4>
+        </main>
+        <script src="./static/js/"></script>
+        <script></script>
   </template>
 
   <!-- for projects -->
@@ -806,6 +958,12 @@ $('.view-balance').on('click', function() {
 </template>
 <template route="/transaction_history">
   <?use-template: "transaction_history"?>
+</template>
+<template route="/transfer">
+  <?use-template: "transfer"?>
+</template>
+<template route="/profile">
+  <?use-template: "profile"?>
 </template>
 <template route="/savings">
   <?use-template: "savings"?>

@@ -143,10 +143,10 @@ body {
     cursor: pointer;
   }
   .site-title {
-    color: white;
-    text-shadow: 1px 1px 2px black;
+    color: green;
+    text-shadow: 1px 1px 2px gray;
     padding: 0px 10px 0px 35px;
-    font-size: 20px;
+    font-size: 18px;
   }
   .sidenav a:hover, .sidenav a.active {
     background: rgba(0, 140, 255, 0.1);
@@ -173,7 +173,7 @@ body {
   }
 
 header {
-    padding: 20px;
+    padding: 10px;
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
@@ -350,124 +350,16 @@ textarea {resize:none;}
   font-size: 25px;
   font-weight: 500;
 }
-.form-outer .sub-step .page .field{
-  width: 100%;
-  height: 45px;
-  margin: 45px 0;
-  display: flex;
-  position: relative;
-}
-.sub-step .page .field button{
-  
-  height: calc(100% + 5px);
-  border: none;
-  background: #7991d3;
-  margin-top: -20px;
-  border-radius: 30px;
-  color: #fff;
-  cursor: pointer;
-  padding: 10px 30px;
-  font-size: 12px;
-  font-weight: 400;
-  margin-left: 5px;
-  text-transform: uppercase;
-  transition: 0.5s ease;
-}
-.sub-step .page .field button:hover{
-  background: #3f66d3;
-}
-.sub-step .page .btns button{
-  margin-top: -20px!important;
-}
-.sub-step .page .btns button.prev{
-  margin-right: 3px;
-  font-size: 15px;
-}
-.sub-step .page .btns button.next{
-  margin-left: 3px;
-}
-.sub-container .sub-progress-bar{
-  display: flex;
-  margin: 40px 0;
-  user-select: none;
-}
-.sub-container .sub-progress-bar .step{
-  text-align: center;
-  width: 100%;
-  position: relative;
-}
-.sub-container .sub-progress-bar .step p{
-  font-weight: 500;
-  font-size: 20px;
-  color: gray;
-  margin-bottom: 8px;
-}
-.sub-progress-bar .step .bullet{
-  height: 25px;
-  width: 25px;
-  border: none;
-  display: inline-block;
-  border-radius: 50%;
-  position: relative;
-  transition: 0.2s;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 25px;
-  background: #a0b5f0;
-}
-.sub-progress-bar .step .bullet.active{
-  border-color: #3f66d3;
-  background: #3f66d3;
-}
-.sub-progress-bar .step .bullet span{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.sub-progress-bar .step .bullet.active span{
-  display: none;
-}
-.sub-progress-bar .step .bullet:before,
-.sub-progress-bar .step .bullet:after{
-  position: absolute;
-  content: '';
-  bottom: 11px;
-  right: -200px;
-  height: 3px;
-  width: 200px;
-  background: #a0b5f0;
-}
-.sub-progress-bar .step .bullet.active:after{
-  background: #3f66d3;
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: animate 0.3s linear forwards;
-}
+
+
+
 @keyframes animate {
   100%{
     transform: scaleX(1);
   }
 }
-.sub-progress-bar .step:last-child .bullet:before,
-.sub-progress-bar .step:last-child .bullet:after{
-  display: none;
-}
-.sub-progress-bar .step p.active{
-  color: #3f66d3;
-  transition: 0.2s linear;
-}
-.sub-progress-bar .step .check{
-  position: absolute;
-  left: 50%;
-  top: 18%;
-  font-size: 15px;
-  transform: translate(-50%, -50%);
-  display: none;
-}
-.sub-progress-bar .step .check.active{
-  display: block;
-  color: #fff;
-}
+
+
 
 /* slider tab */
 .wrapper{
@@ -1028,10 +920,13 @@ p.error {
   color: rgb(13, 13, 61);
   border-color: rgb(15, 15, 61);
 }
-.form button{
+.form button, #transfer-btn{
   margin: 20px 0;
+  display: block;
+  text-align: center;
+  font-weight: 700;
   width: 100%;
-  height: 45px;
+  padding: 20px;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -1092,4 +987,23 @@ color: #fff !important;
 .trans-row tr td:nth-child(3) {
   max-width: 50px !important;
   text-align: left;
+}
+.tran-it {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+.bank-list {
+  max-height: calc(100vh-200px) !important;
+  overflow-y: auto;
+}
+.bank {
+  color: green;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.bank:hover {
+  background: green;
+  color: white;
 }
