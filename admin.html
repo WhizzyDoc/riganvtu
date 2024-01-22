@@ -73,13 +73,8 @@ for (i = 0; i < acc.length; i++) {
   <template id="header">
     <header class="">
       
-<<<<<<< HEAD
       <form class="w-margin-right" id="search-form">
         <h4 class="w-bold-x site-title">
-=======
-      <form class="w-margin-right" id="">
-        <h3 class="w-bold-x w-text-green">
->>>>>>> 74cb202df4c73e0f31d18db92af1a02533394cee
           RiganVTU
         </h4>
       </form>
@@ -565,6 +560,93 @@ $('.view-balance').on('click', function() {
   <?use-template: "sidenav"?>
       <main class="">
         <h4 class="w-bold-x w-center w-text-green">Savings & Finance</h4>
+        <div class="row">
+          <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <p>Total Balance</p>
+            <div class="h3 w-bold-x w-margin-bottom">N<span>0.00</span></div>
+          </div>
+          <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <p>Total Interest</p>
+            <div class="h3 w-bold-x w-margin-bottom">N<span>0.00</span></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="save-con col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div class="b">
+              <h4 class="w-bold-x">
+                <i class="fa fa-dollar w-text-green"></i>&nbsp;&nbsp;
+                Wallet
+              </h4>
+              <p class="w-text-gray">
+                Your total wallet balance including bonus balance
+              </p>
+              <h3 class="w-bold-x">N<span id="acc-bal">0.00</span></h3>
+            </div>
+          </div>
+          <div class="save-con col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div class="s">
+              <h4 class="w-bold-x">
+                <i class="fa fa-money w-text-violet"></i>&nbsp;&nbsp;
+                SafeBox
+              </h4>
+              <p class="w-text-gray">
+                Save your money, get interests and withdraw anytime
+              </p>
+              <h3 class="w-bold-x">N<span>0.00</span></h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="save-con col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div class="t">
+              <h4 class="w-bold-x">
+                <i class="fa fa-dart w-text-blue"></i>&nbsp;&nbsp;
+                Targets
+              </h4>
+              <p class="w-text-gray">
+                Plans: <span>0</span>
+              </p>
+              <h3 class="w-bold-x">N<span>0.00</span></h3>
+            </div>
+          </div>
+          <div class="save-con col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div class="f">
+              <h4 class="w-bold-x">
+                <i class="fa fa-lock w-text-red"></i>&nbsp;&nbsp;
+                Fixed
+              </h4>
+              <p class="w-text-gray">
+                Min: N500<br>
+                Tenor: 5-1000 days
+              </p>
+              <h3 class="w-bold-x">N<span>0.00</span></h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="save-con col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div class="r">
+              <h4 class="w-bold-x">
+                <i class="fa fa-bar-chart w-text-brown"></i>&nbsp;&nbsp;
+                Savings Report
+              </h4>
+              <p class="w-text-gray">
+                Check out your savings journey so far
+              </p>
+            </div>
+          </div>
+          <div class="save-con col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+            <div class="c">
+              <h4 class="w-bold-x">
+                <i class="fa fa-bitcoin w-text-indigo"></i>&nbsp;&nbsp;
+                Cryptocurrency
+              </h4>
+              <p class="w-text-gray">
+                Manage your cryptocurrency accounts
+              </p>
+            </div>
+          </div>
+        </div>
       </main>
       <script src="./static/js/savings.js"></script>
       <script>
@@ -716,11 +798,80 @@ $('.view-balance').on('click', function() {
   <?use-template: "sidenav"?>
       <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
       <main class="">
-        <h4 class="w-bold-x w-center w-text-green">Profile</h4>
+        <div class="profile w-round-large w-padding">
+          <div class="profile-con">
+            <div>
+              <h4 class="w-bold-x w-text-white">
+                Hi, <?print: localStorage.names?> 
+              </h4>
+              
+              <div class="balance">
+                <p><span>Total Balance <span class="view-balance"><i class="fa fa-eye"></i></span></span></p>
+                <span style="font-size:1.4rem">N<span id="acc-bal">0.00</span><span id="acc-bal-a">****</span></span>
+                <p>& Bonus N<span id="bon-bal">0.00</span></p>
+              </div>
+            </div>
+  
+            <div class="pro-img"><img src="./static/image/tom.jpg" alt=""/> </div>
+              
+          </div>
+        </div>
+
+        <table class="table table-hover profile-table" style="margin-bottom:60px;">
+          <tbody class="w-padding">
+              <tr data-id="">
+                  <td><i class="fa fa-user"></i> My Profile</td>
+                  <td><b><i class="fa fa-angle-right"></i></b></td>
+              </tr>
+              <tr data-id="">
+                <td><i class="fa fa-bank"></i> My Accounts</td>
+                <td><b><i class="fa fa-angle-right"></i></b></td>
+            </tr>
+              <tr data-id="">
+                  <td><i class="fa fa-credit-card"></i> Bank Cards</td>
+                  <td><b><i class="fa fa-angle-right"></i></b></td>
+              </tr>
+              <tr data-id="#transaction_history">
+                  <td><i class="fa fa-history"></i> Transaction History</td>
+                  <td><b><i class="fa fa-angle-right"></i></b></td>
+              </tr>
+            <tr data-id="">
+                <td><i class="fa fa-key"></i> Account Settings</td>
+                <td><b><i class="fa fa-angle-right"></i></b></td>
+            </tr>
+            <tr data-id="">
+              <td><i class="fa fa-lock"></i> Password Settings</td>
+              <td><b><i class="fa fa-angle-right"></i></b></td>
+            </tr>
+            <tr data-id="#savings">
+              <td><i class="fa fa-money"></i> My Savings</td>
+              <td><b><i class="fa fa-angle-right"></i></b></td>
+            </tr>
+          </tbody>
+        </table>
       </main>
       <script src="./static/js/profile.js"></script>
       <script>
         $('.profile-act').addClass('active')
+        $('tr').click(function() {
+          loc = $(this).data('id');
+          location.href = loc;
+        })
+        var flag = 1;
+        $('.view-balance').on('click', function() {
+          if(flag == 1) {
+            $('#acc-bal').hide();
+            $('#acc-bal-a').show();
+            $(this).html(`<i class="fa fa-eye-slash"></i>`);
+            flag = 0;
+          }
+          else {
+            $('#acc-bal').show();
+            $('#acc-bal-a').hide();
+            $(this).html(`<i class="fa fa-eye"></i>`);
+            flag = 1;
+          }
+        })
       </script>
 </template>
 

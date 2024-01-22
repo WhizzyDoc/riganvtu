@@ -104,6 +104,19 @@ function transferFund() {
     })
     .then(data => {
         console.log(data)
+        if(data.status == 'success') {
+            swal("Success", data.message, 'success')
+            $('#transfer-form')[0].reset()
+            $('.note-header').html(`<i class="fa fa-exchange"></i> Bank Transfer`);
+            $('.note-body').html(`N${data['amount']} Transfer to ${data['name']}`);
+            $('.notification').addClass('active');
+            setTimeout(function() {
+                $('.notification').removeClass('active')
+            }, 3000);
+        }
+        else {
+            swal("Error", data.message, 'error')
+        }
         $('.trans-btn').text('Proceed To Transfer').attr('disabled', false);
     })
     .catch(err => {

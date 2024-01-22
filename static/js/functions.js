@@ -14,3 +14,8 @@ function openNav() {
     $("main").toggleClass('active');
   }
 
+  function digify(n) {
+    a = Number(n)
+    return a.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
+  }
+

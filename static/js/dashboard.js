@@ -1,10 +1,4 @@
 // For Admin
-
-function digify(n) {
-  a = Number(n)
-  return a.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})
-}
-
   function getAccount() {
     let url = `${base_url}profile/get_account/?api_token=${localStorage.api_key}`;
     fetch(url)
